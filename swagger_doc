@@ -1,47 +1,47 @@
 swagger: "2.0"
 info:
-  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  description: "API Rest para la gestion de tareas"
   version: "1.0.0"
-  title: "Swagger Petstore"
-host: "petstore.swagger.io"
-basePath: "/v2"
+  title: "ITEC PP1 - Challenge 2: TODO Task"
+host: "localhost:8080"
+basePath: "/v1"
 tags:
-- name: "pet"
-  description: "Everything about your Pets"
+- name: "Tareas"
+  description: "Operaciones sobre las tareas."
 schemes:
 - "http"
 paths:
-  /pet:
+  /task:
     post:
       tags:
-      - "pet"
-      summary: "Add a new pet to the store"
-      description: " "
-      operationId: "addPet"
+      - "Tareas"
+      summary: "Agrega una nueva tarea"
+      description: ""
+      operationId: "addTask"
       consumes:
       - "application/json"
-      - "application/xml"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - in: "body"
         name: "body"
-        description: "Pet object that needs to be added to the store"
         required: true
         schema:
           $ref: "#/definitions/Pet"
       responses:
+        "201":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Pet"
         "405":
           description: "Invalid input"
     get:
       tags:
-      - "pet"
+      - "Tareas"
       summary: "Finds Pets by status"
       description: "Multiple status values can be provided with comma separated strings"
       operationId: "findPetsByStatus"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - name: "status"
@@ -66,15 +66,14 @@ paths:
               $ref: "#/definitions/Pet"
         "400":
           description: "Invalid status value"
-  /pet/{petId}:
+  /task/{petId}:
     get:
       tags:
-      - "pet"
+      - "Tareas"
       summary: "Find pet by ID"
       description: "Returns a single pet"
       operationId: "getPetById"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - name: "petId"
@@ -94,14 +93,13 @@ paths:
           description: "Pet not found"
     put:
       tags:
-      - "pet"
+      - "Tareas"
       summary: "Updates a pet in the store with form data"
       description: ""
       operationId: "updatePetWithForm"
       consumes:
       - "application/x-www-form-urlencoded"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - name: "petId"
@@ -125,12 +123,11 @@ paths:
           description: "Invalid input"
     delete:
       tags:
-      - "pet"
+      - "Tareas"
       summary: "Deletes a pet"
       description: ""
       operationId: "deletePet"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - name: "api_key"
@@ -177,5 +174,3 @@ definitions:
         - "sold"
     xml:
       name: "Pet"
-
-
